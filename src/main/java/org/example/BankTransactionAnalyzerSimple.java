@@ -40,6 +40,7 @@ public class BankTransactionAnalyzerSimple {
 
     }
 
+    //METODO PARA TOTALIZAR O VALOR DAS TRANSACOES DO MES DE ENVIADO COMO PARAMETRO
     private static List<BankTransaction> selectInMonth(final List<BankTransaction> bankTransactions,final Month month) {
         final List<BankTransaction> bankTransactionsInMonth = new ArrayList<>();
         for (final BankTransaction bankTransaction : bankTransactions) {
