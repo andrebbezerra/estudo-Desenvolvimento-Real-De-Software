@@ -1,0 +1,5 @@
+# Arquivos ignorados padrão
+/shelf/
+/workspace.xml
+# Pasta padrão ignorada com arquivos de consulta
+/queries/
