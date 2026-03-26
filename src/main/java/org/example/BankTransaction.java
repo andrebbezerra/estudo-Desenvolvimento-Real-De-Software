@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
 //CLASSE PARA O OBJETO BANKTRANSACTION QUE SERÁ USADA EM OUTRAS CLASSES
 public class BankTransaction {
     //CRIAÇÃO DAS VARIAVEIS DE INSTANCIA DO OBJETO
