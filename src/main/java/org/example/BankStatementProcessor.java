@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 //CLASSE CRIADA PARA EFETUAR OS CALCULOS NECESSARIOS NO PROCESSO, ASSIM O PROJETO FICA MAIS COESO, TENDO CADA CLASSE SUA RESPONSABILIDADE
@@ -40,5 +41,47 @@ public class BankStatementProcessor {
             }
         }
         return total;
+    }
+
+    //METODO PARA ENCONTRAR AS TRANSACOES ACIMA DE CERTO MONTANTE
+    public List<BankTransaction> findTransactionGreaterThanEqual(final int amount){
+        final List<BankTransaction> result = new ArrayList<>();
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if(bankTransaction.getAmount() > amount) {
+                result.add(bankTransaction);
+            }
+        }
+        return result;
+    }
+    //METODO PARA ENCONTRAR TRANSACOES BANCARIAS EM DETERMINADO MES
+    public List<BankTransaction> findTransactionsInMonth(final Month mont){
+        final List<BankTransaction> result = new ArrayList<>();
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if(bankTransaction.getDate().getMonth() == mont) {
+                result.add(bankTransaction);
+            }
+        }
+        return result;
+    }
+
+    //METODO PARA ENCONTRAR TRANSACOES BANCARIAS EM DETERMINADO MES E ACIMA DE CERTO MONTANTE
+    public List<BankTransaction> findTransactionsInMontAndGreater(final Month month, final int amount){
+        final List<BankTransaction> result = new ArrayList<>();
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if(bankTransaction.getDate().getMonth() == month && bankTransaction.getAmount() > amount) {
+                result.add(bankTransaction);
+            }
+        }
+        return result;
+    }
+
+    public List<BankTransaction> findTransactions(final BankTransactionFilter bankTransactionFilter) {
+        final List<BankTransaction> result = new ArrayList<>();
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if(bankTransactionFilter.test(bankTransaction)) {
+                result.add(bankTransaction);
+            }
+        }
+        return result;
     }
 }
