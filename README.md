@@ -33,19 +33,21 @@ O livro é estruturado em torno de desafios práticos, cada um focado em ensinar
 ### 1. The Bank Statements Analyzer (Analisador de Extratos Bancários)
 O primeiro projeto consiste na construção de um analisador de extratos bancários a partir de arquivos CSV. O objetivo principal é introduzir o princípio de responsabilidade única (SRP), demonstrar a importância da coesão e do baixo acoplamento, além de abordar a criação de testes automatizados básicos e a identificação de anti-padrões como a *God Class*.
 
-Atualmente, o repositório já contém a estrutura inicial deste projeto, implementando a leitura e o parsing de arquivos CSV para calcular o montante total de transações e filtrar transações por mês específico.
+O repositório já contém este projeto refatorado, separando as responsabilidades de parsing (`BankStatementCSVParser`), processamento (`BankStatementProcessor`) e análise (`BankStatementAnalyzer`). Também foram implementados testes automatizados utilizando JUnit (`BankStatementCSVParserTest`).
 
 ### 2. Extending the Bank Statements Analyzer (Extensão do Analisador)
 Nesta fase, o analisador inicial é aprimorado para suportar novos formatos de entrada e exportação de dados. O foco recai sobre o Princípio Aberto/Fechado (OCP), a utilização de interfaces, expressões lambda para flexibilizar o comportamento, e o tratamento adequado de exceções.
 
+A implementação atual já introduz conceitos deste capítulo, como a interface `Exporter` e sua implementação `HtmlExporter`, além do uso de interfaces funcionais como `BankTransactionFilter` e `BankTransactionSummarizer` para criar um código mais flexível e extensível.
+
 ### 3. The Document Management System (Sistema de Gerenciamento de Documentos)
-O terceiro desafio envolve a criação de um sistema para indexar e buscar diferentes tipos de documentos. Este projeto aprofunda o entendimento do Princípio de Substituição de Liskov (LSP), estratégias de encapsulamento, e técnicas avançadas de testes, enfatizando o teste de comportamento em vez da implementação.
+O terceiro desafio envolve a criação de um sistema para indexar e buscar diferentes tipos de documentos. Este projeto aprofunda o entendimento do Princípio de Substituição de Liskov (LSP), estratégias de encapsulamento, e técnicas avançadas de testes, enfatizando o teste de comportamento em vez da implementação. *(A ser desenvolvido)*
 
 ### 4. The Business Rules Engine (Motor de Regras de Negócio)
-Neste projeto, o foco muda para a construção de um motor de regras flexível. É a oportunidade ideal para explorar o Test Driven Development (TDD) de forma intensiva, aplicar o padrão Builder para criar APIs fluentes (Fluent APIs), e entender o Princípio de Segregação de Interfaces (ISP).
+Neste projeto, o foco muda para a construção de um motor de regras flexível. É a oportunidade ideal para explorar o Test Driven Development (TDD) de forma intensiva, aplicar o padrão Builder para criar APIs fluentes (Fluent APIs), e entender o Princípio de Segregação de Interfaces (ISP). *(A ser desenvolvido)*
 
 ### 5. Twootr (Plataforma de Mídia Social)
-O projeto final e mais complexo é a construção do núcleo de uma plataforma de mensagens semelhante ao Twitter. Este desafio integra todos os conhecimentos anteriores e introduz conceitos avançados de arquitetura, especificamente a Arquitetura Hexagonal. Também aborda persistência de dados com o padrão Repository, segurança básica (senhas), e o uso de mocks para testar componentes isolados do sistema.
+O projeto final e mais complexo é a construção do núcleo de uma plataforma de mensagens semelhante ao Twitter. Este desafio integra todos os conhecimentos anteriores e introduz conceitos avançados de arquitetura, especificamente a Arquitetura Hexagonal. Também aborda persistência de dados com o padrão Repository, segurança básica (senhas), e o uso de mocks para testar componentes isolados do sistema. *(A ser desenvolvido)*
 
 ---
 
@@ -53,7 +55,9 @@ O projeto final e mais complexo é a construção do núcleo de uma plataforma d
 
 O repositório foi inicializado utilizando o **Maven** como ferramenta de gerenciamento de dependências e build, configurado para utilizar o **Java 17**.
 
-No momento, o desenvolvimento encontra-se na fase inicial do **Bank Statements Analyzer**. O código implementa a leitura de um arquivo CSV de transações bancárias e realiza cálculos simples, como a soma total dos valores e a filtragem de transações por mês. Os próximos passos incluirão a refatoração deste código para aplicar os princípios de design discutidos no livro, separando as responsabilidades de parsing, cálculo e apresentação.
+**Progresso Atual:**
+- ✅ **Capítulo 2 concluído:** O código inicial monolítico (`BankTransactionAnalyzerSimple`) foi completamente refatorado. As responsabilidades foram divididas em classes altamente coesas (`BankStatementParser`, `BankStatementProcessor`, etc.), aplicando o **Princípio de Responsabilidade Única (SRP)**. Além disso, foram introduzidos testes de unidade automatizados com JUnit (`BankStatementCSVParserTest`).
+- 🔄 **Capítulo 3 em andamento:** O projeto está sendo estendido para aplicar o **Princípio Aberto/Fechado (OCP)**. Foram introduzidas interfaces para exportação de dados (`Exporter`, `HtmlExporter`) e filtros de transações utilizando o padrão Strategy e interfaces funcionais (`BankTransactionFilter`, `BankTransactionSummarizer`), permitindo que o sistema seja estendido sem modificar o código existente. Também foi implementada a classe `Notification` para o padrão Notification de validação.
 
 ## Como Executar
 
@@ -67,11 +71,11 @@ Para executar os exemplos deste repositório, você precisará ter o [Java JDK 1
    ```bash
    cd estudo-Desenvolvimento-Real-De-Software
    ```
-3. Compile o projeto com o Maven:
+3. Compile o projeto e execute os testes com o Maven:
    ```bash
    mvn clean install
    ```
-4. Execute a classe principal desejada através da sua IDE de preferência ou via linha de comando.
+4. Execute a classe principal (`MainApplication` ou `BankStatementAnalyzer`) através da sua IDE de preferência ou via linha de comando.
 
 ---
 
